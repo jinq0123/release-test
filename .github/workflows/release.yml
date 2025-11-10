@@ -6,20 +6,21 @@ on:
     tags:
       - 'v*'  # 匹配 v1.0.0、v2.1.1 等 Tag
 
+# 关键：添加权限配置
+permissions:
+  contents: write  # 允许创建/修改 Release（属于仓库内容）
+
 jobs:
   build-and-release:
     runs-on: ubuntu-latest  # 运行环境（可选 ubuntu/macos/windows）
 
     steps:
       # 创建 GitHub Release
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub 自动提供的 Token
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref }}  # 关联当前 Tag（如 refs/tags/v1.0.0 → v1.0.0）
-          release_name: Release ${{ github.ref_name }}  # Release 标题（如 v1.0.0）
-          draft: false  # 不设为草稿
-          prerelease: false  # 不是预发布
-
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
