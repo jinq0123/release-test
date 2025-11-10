@@ -23,6 +23,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: '1.24'
+          cache: true
 
       # 步骤 1：构建二进制（输出到 cmd/ 目录）
       - name: Build binary
@@ -47,5 +48,7 @@ jobs:
           files: |
             dist/*.tar.gz
             bin/myapp
+          draft: false
+          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
