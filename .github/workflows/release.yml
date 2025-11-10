@@ -45,7 +45,7 @@ jobs:
         with:
           name: "Release ${{ github.ref_name }}"
           files: |
-            bin/*.tar.gz
+            dist/*.tar.gz
             bin/myapp
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
