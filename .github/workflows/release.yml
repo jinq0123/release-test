@@ -38,7 +38,7 @@ jobs:
           # 创建输出目录
           mkdir -p dist
           # 打包 script/ 和 config/ 到 dist/ 目录，命名格式：myapp-{tag}-dirs.tar.gz
-          tar -czf "dist/myapp-${TAG_NAME}-dirs.tar.gz" script/ config/
+          tar -czf "dist/myapp-dirs.tar.gz" script/ config/
 
       # 步骤 3：创建 Release 并上传打包文件
       - name: Create Release
